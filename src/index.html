@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title></title>
+    <meta charset="utf-8" />
+    <title>Japanese Audio Downloader</title>
   </head>
   <body>
-    <div id="test"></div>
+    <div id="app"></div>
   </body>
 
   <script>
-  import Vue from 'vue';
-  import Test from './test';
+    import Vue from 'vue';
+    import Main from './Main';
 
-  const app = new Vue(Test).$mount('#test');
-
-  app.text = "Electron Forge with Vue.js!";
-
+    new Vue(Main).$mount('#app');
   </script>
 </html>

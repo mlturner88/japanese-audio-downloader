@@ -2,17 +2,15 @@
   "name": "jp-audio-dl",
   "productName": "jp-audio-dl",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Simple Electron app for downloading Japanese audio from Jisho",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "publish": "electron-forge publish"
   },
-  "keywords": [],
-  "author": "qlt",
+  "author": "Matthew Turner",
   "license": "MIT",
   "config": {
     "forge": {
@@ -47,16 +45,25 @@
     }
   },
   "dependencies": {
+    "bulma": "^0.7.2",
     "electron-compile": "^6.4.3",
     "electron-devtools-installer": "^2.1.0",
     "electron-squirrel-startup": "^1.0.0",
+    "roboto-fontface": "^0.10.0",
     "vue": "^2.1.7"
   },
   "devDependencies": {
+    "@vue/devtools": "^4.1.5",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "babel-eslint": "^10.0.1",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "electron-forge": "^5.2.3",
-    "electron-prebuilt-compile": "3.0.10"
+    "electron-prebuilt-compile": "3.0.10",
+    "eslint": "^5.9.0",
+    "eslint-plugin-vue": "^5.0.0-beta.5",
+    "prettier": "^1.15.2",
+    "vueify": "^9.4.1"
   }
 }
