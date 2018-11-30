@@ -1,6 +1,8 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
+const { download } = require('electron-dl');
+const { findAudioUrl } = require('./webScraper.js');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -33,6 +35,8 @@ const createWindow = async () => {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+  ipcMain.on('download-audio', downloadListener);
 };
 
 // This method will be called when Electron has finished
@@ -42,6 +46,7 @@ app.on('ready', createWindow);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
+  ipcMain.removeListener('download-audio', downloadListener);
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
@@ -57,5 +62,24 @@ app.on('activate', () => {
   }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
+async function downloadListener(event, word) {
+  try {
+    const url = await findAudioUrl(word);
+    const filename = word + '.mp3';
+
+    await download(BrowserWindow.getFocusedWindow(), url, {
+      saveAs: false,
+      filename,
+      onStarted(downloadItem) {
+        event.sender.send('download-start', downloadItem);
+      },
+      onProgress(progress) {
+        event.sender.send('download-progress', progress);
+      }
+    });
+
+    event.sender.send('download-success', { url, filename });
+  } catch (error) {
+    event.sender.send('download-error', error);
+  }
+}
