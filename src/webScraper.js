@@ -14,7 +14,7 @@ async function findAudioUrl(word) {
     const url = audioElement.attr('src');
 
     if (!url) {
-      throw `Cannot find download for 「${word}」.`;
+      throw `Cannot find download for 「${word}」`;
     }
 
     return url.startsWith('//') ? 'https:' + url : url;
