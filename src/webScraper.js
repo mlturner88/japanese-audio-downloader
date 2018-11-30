@@ -11,7 +11,7 @@ async function findAudioUrl(word) {
   const audioElement = $('audio > source[type="audio/mpeg"]');
 
   if (audioElement && audioElement.length > 0) {
-    const url = audioElement.first().attr('src');
+    const url = audioElement.attr('src');
 
     if (!url) {
       throw `Cannot find download for 「${word}」.`;

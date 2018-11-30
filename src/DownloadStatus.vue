@@ -1,5 +1,6 @@
 <script>
 const { ipcRenderer } = require('electron');
+const cheerio = require('cheerio');
 
 export default {
   name: 'DownloadStatus',
@@ -39,7 +40,10 @@ export default {
       if (!error) {
         this.error = 'There was a problem downloading the audio.';
       } else if (error.response) {
-        this.error = `${error.response.status}: ${error.response.statusText}`;
+        const jishoError = cheerio.load(error.response.data)('h1').text();
+        this.error = !jishoError ?
+          `${error.response.status}: ${error.response.statusText}` :
+          `From Jisho: ${jishoError}`;
       } else {
         this.error = error;
       }
