@@ -6,7 +6,8 @@ const client = axios.create({
 });
 
 async function findAudioUrl(word) {
-  const response = await client.get(encodeURIComponent(word));
+  const encodedWord = encodeURIComponent(word);
+  const response = await client.get(encodedWord);
   const $ = cheerio.load(response.data);
   const audioElement = $('audio > source[type="audio/mpeg"]');
 
@@ -19,7 +20,7 @@ async function findAudioUrl(word) {
 
     return url.startsWith('//') ? 'https:' + url : url;
   } else {
-    throw `「${word}」 could not be found`;
+    return `https://www.japandict.com/voice/read?text=${encodedWord}&outputFormat=mp3`;
   }
 }
 
