@@ -23,12 +23,19 @@ const help = [
   ''
 ];
 
+function createVerboseLogger(isVerbose) {
+  return {
+    log: !isVerbose ? () => undefined : (...args) => console.log(...args)
+  };
+}
+
 module.exports = {
   printHelp() {
     help.forEach(line => {
       console.info(line);
     });
-  }
+  },
+  createVerboseLogger
 };
 
 function prettyPrintArguments() {

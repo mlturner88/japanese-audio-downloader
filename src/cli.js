@@ -2,7 +2,7 @@ require('colors');
 
 // const argv = require('minimist')(process.argv.slice(2));
 const parseArgs = require('minimist');
-const { printHelp } = require('./cliHelpers');
+const { printHelp, createVerboseLogger } = require('./cliHelpers');
 const argv = parseArgs(process.argv.slice(2), {
   boolean: true,
   alias: {
@@ -57,9 +57,3 @@ Promise.all(wordPromises).then(() => {
       .pipe(fs.createWriteStream(savePath));
   });
 });
-
-function createVerboseLogger(isVerbose) {
-  return {
-    log: !isVerbose ? () => undefined : (...args) => console.log(...args)
-  };
-}
