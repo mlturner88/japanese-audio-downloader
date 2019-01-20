@@ -1,7 +1,7 @@
 {
   "name": "jp-audio-dl",
   "productName": "jp-audio-dl",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Simple Electron app for downloading Japanese audio from Jisho",
   "main": "src/index.js",
   "engines": {
