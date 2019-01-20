@@ -30,12 +30,20 @@ export default {
     <div class="columns is-mobile">
       <div class="column">
         <div class="control">
-          <input v-model.trim="word" class="input" type="text" placeholder="word (e.g. 了解)" @keyup.enter="search" />
+          <input
+            v-model.trim="word"
+            class="input"
+            type="text"
+            placeholder="word (e.g. 了解)"
+            @keyup.enter="search"
+          />
         </div>
       </div>
       <div class="column is-narrow">
         <div class="control">
-          <a class="button is-primary" :disabled="!word" @click="search">Search</a>
+          <a class="button is-primary" :disabled="!word" @click="search"
+            >Search</a
+          >
         </div>
       </div>
     </div>

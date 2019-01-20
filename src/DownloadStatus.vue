@@ -36,14 +36,16 @@ export default {
       this.downloading = false;
       this.completed = false;
       this.progress = 0;
-      
+
       if (!error) {
         this.error = 'There was a problem downloading the audio.';
       } else if (error.response) {
-        const jishoError = cheerio.load(error.response.data)('h1').text();
-        this.error = !jishoError ?
-          `${error.response.status}: ${error.response.statusText}` :
-          `From Jisho: ${jishoError}`;
+        const jishoError = cheerio
+          .load(error.response.data)('h1')
+          .text();
+        this.error = !jishoError
+          ? `${error.response.status}: ${error.response.statusText}`
+          : `From Jisho: ${jishoError}`;
       } else {
         this.error = error;
       }
@@ -69,7 +71,7 @@ export default {
       this.error = null;
     }
   }
-}
+};
 </script>
 
 <template>
@@ -78,18 +80,22 @@ export default {
       <div class="notification is-info">Searching...</div>
     </div>
     <div v-if="downloading" class="column is-half">
-      <progress class="progress is-small is-primary" :value="progress" max="100"></progress>
+      <progress
+        class="progress is-small is-primary"
+        :value="progress"
+        max="100"
+      ></progress>
     </div>
     <div v-else-if="completed" class="column is-narrow">
       <div class="notification is-success">
         <div class="content">
           <p>Download complete.</p>
-          <p class="filename">{{completed}}</p>
+          <p class="filename">{{ completed }}</p>
         </div>
       </div>
     </div>
     <div v-else-if="error" class="column is-narrow">
-      <div class="notification is-danger">{{error}}</div>
+      <div class="notification is-danger">{{ error }}</div>
     </div>
   </div>
 </template>
