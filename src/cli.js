@@ -4,7 +4,7 @@ require('colors');
 const parseArgs = require('minimist');
 const { printHelp } = require('./cliHelpers');
 const argv = parseArgs(process.argv.slice(2), {
-  boolean: ['verbose', 'help'],
+  boolean: true,
   alias: {
     verbose: 'v',
     folder: ['f', 'd'],
