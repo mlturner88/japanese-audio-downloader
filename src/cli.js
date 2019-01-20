@@ -2,22 +2,23 @@ require('colors');
 
 // const argv = require('minimist')(process.argv.slice(2));
 const parseArgs = require('minimist');
+const { printHelp } = require('./cliHelpers');
 const argv = parseArgs(process.argv.slice(2), {
-  boolean: 'verbose',
+  boolean: ['verbose', 'help'],
   alias: {
     verbose: 'v',
-    folder: ['f', 'd']
+    folder: ['f', 'd'],
+    help: ['h', '?']
   }
 });
 
 const inputWords = argv._;
 const verbose = createVerboseLogger(argv.verbose);
 
-if (!inputWords || !inputWords.length) {
-  // no input received
-  console.error('No words received!\n'.underline.red);
-  console.info('Include space separated list of words.'.bgWhite.black);
-  process.exit(1);
+if (argv.help || !inputWords || !inputWords.length) {
+  // no input received or if user wants to print help
+  printHelp();
+  process.exit();
 }
 
 const { findAudioUrl } = require('./webScraper');
