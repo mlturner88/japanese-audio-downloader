@@ -1,7 +1,8 @@
 const argumentsObject = {
   '<word1> <word2> ...':
     'Space separated list of Japanese words to download audio for.',
-  '--help': 'Prints out this help. (aliases: -f -?)',
+  '--folder': 'Specify download folder for audio files (aliases: -f -d)',
+  '--help': 'Prints out this help. (aliases: -h -?)',
   '--verbose': 'Prints out verbose messages. (alias: -v)'
 };
 
