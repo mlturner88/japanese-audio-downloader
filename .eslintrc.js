@@ -1,11 +1,13 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
+    es6: true
   },
-  extends: ['plugin:vue/recommended', '@vue/prettier'],
+  extends: ['eslint:recommended'],
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
+    ecmaVersion: '2017'
   },
   rules: {
     indent: ['error', 2],
